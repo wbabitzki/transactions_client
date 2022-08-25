@@ -1,0 +1,42 @@
+.mat-toolbar {
+    background-color: #084B83;
+    height: 48px;
+}
+
+.mat-toolbar .mat-icon {
+    color: #BBE6E4;
+}
+
+.mat-sidenav-container {
+    height: 100vh;
+    background-color: #F0F6F6;
+}
+
+.mat-sidenav {
+    width: 200px;
+    background-color: #BBE6E4;
+    border-right: solid black 1px;
+}
+
+.mat-list-item .mat-icon {
+    padding-right: 5px;
+}
+
+.mat-list-item a {
+    color: #084B83;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+.mat-list-item:hover {
+    background-color: #42BFDD;
+}
+
+.active-link {
+    font-weight: bold;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
