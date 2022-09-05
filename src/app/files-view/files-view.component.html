@@ -1,1 +1,7 @@
-<p>files-view works!</p>
+<input #fileUpload type="file" style="display:none" (change)="onFileSelected($event)" id="file">
+
+<mat-toolbar>
+    <button mat-stroked-button class="import" 
+        (click)="fileUpload.click()">Import
+    </button>
+</mat-toolbar>

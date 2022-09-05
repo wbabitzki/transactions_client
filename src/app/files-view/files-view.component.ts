@@ -5,11 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './files-view.component.html',
   styleUrls: ['./files-view.component.css']
 })
-export class FilesViewComponent implements OnInit {
+export class FilesViewComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onFileSelected(event: Event) {
+    console.log((event.target as HTMLInputElement).files?.item(0))
   }
-
 }

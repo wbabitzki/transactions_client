@@ -1,0 +1,24 @@
+.mat-toolbar {
+    background-color: #BBE6E4;
+    height: 48px;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+
+.mat-button, 
+.mat-flat-button, 
+.mat-icon-button, 
+.mat-stroked-button {
+    background-color: #42BFDD;
+    border-radius: 15px; 
+    border: 1px #084B83 solid;
+    color: #084B83;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    height: 40px;
+}
+
+.mat-stroked-button.import{
+    min-width: 130px;
+}
