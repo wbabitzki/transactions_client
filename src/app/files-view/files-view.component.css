@@ -22,3 +22,7 @@
 .mat-stroked-button.import{
     min-width: 130px;
 }
+
+.mat-toolbar .message {
+    margin-left: auto;
+}

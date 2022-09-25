@@ -1,7 +1,8 @@
-<input #fileUpload type="file" style="display:none" (change)="onFileSelected($event)" id="file">
+<input #fileUpload type="file" style="display:none" (change)="onFileSelected($event)" id="file"  onclick="this.value=null;">
 
 <mat-toolbar>
     <button mat-stroked-button class="import" 
         (click)="fileUpload.click()">Import
     </button>
+    <span class="message">{{importedFileName}}</span>
 </mat-toolbar>
