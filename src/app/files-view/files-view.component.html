@@ -4,5 +4,48 @@
     <button mat-stroked-button class="import" 
         (click)="fileUpload.click()">Import
     </button>
-    <span class="message">{{importedFileName}}</span>
+    <span class="message">{{importedFileName}}</span>    
 </mat-toolbar>
+
+<mat-table [dataSource]="storedFiles">
+
+    <ng-container matColumnDef="errors">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let file">
+            <div *ngIf="file.errors && file.errors.length > 0" class="error-sign">{{file.errors.length}}</div>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{file.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="countRecords">
+        <mat-header-cell *matHeaderCellDef>Records</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{file.size}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dateFrom">
+        <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{file.dateFrom}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dateTo">
+        <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{file.dateTo}}</mat-cell>
+    </ng-container>
+   
+    <ng-container matColumnDef="dateImported">
+        <mat-header-cell *matHeaderCellDef>Imported</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{formatDate(file.lastModified)}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef>Version</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{file.versions}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

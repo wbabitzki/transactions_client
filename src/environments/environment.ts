@@ -8,7 +8,8 @@ export const environment = {
   production: false,
   accessKeyId: $ENV.accessKeyId,
   secretAccessKey: $ENV.secretAccessKey,
-  region: $ENV.region
+  region: $ENV.region,
+  listStoredFilesUrl: 'https://4e5ac39d-5b51-46c9-8b07-6ccc67fdbc7c.mock.pstmn.io/test'
 };
 
 /*
