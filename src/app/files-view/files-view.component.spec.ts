@@ -111,10 +111,10 @@ describe('FilesViewComponent', () => {
     expect(name.nativeNode.textContent).toBe('file1');
 
     const dateFromElement = fixture.debugElement.query(By.css('mat-table mat-row .mat-column-dateFrom'));
-    expect(new Date(dateFromElement.nativeNode.textContent).getTime()).toEqual(dateFrom.getTime());
+    expect(dateFromElement.nativeNode.textContent).toEqual('01.01.2022');
 
     const dateToElement = fixture.debugElement.query(By.css('mat-table mat-row .mat-column-dateTo'));
-    expect(new Date(dateToElement.nativeNode.textContent).getTime()).toEqual(dateTo.getTime());
+    expect(dateToElement.nativeNode.textContent).toEqual('31.03.2022');
 
     const versionElement = fixture.debugElement.query(By.css('mat-table mat-row .mat-column-version'));
     expect(versionElement.nativeNode.textContent).toBe('1');

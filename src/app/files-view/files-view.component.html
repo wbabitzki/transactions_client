@@ -28,12 +28,12 @@
 
     <ng-container matColumnDef="dateFrom">
         <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
-        <mat-cell *matCellDef="let file">{{file.dateFrom}}</mat-cell>
+        <mat-cell *matCellDef="let file">{{formatDate(file.dateFrom)}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="dateTo">
         <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
-        <mat-cell *matCellDef="let file">{{file.dateTo}}</mat-cell>
+        <mat-cell *matCellDef="let file">{{formatDate(file.dateTo)}}</mat-cell>
     </ng-container>
    
     <ng-container matColumnDef="dateImported">
