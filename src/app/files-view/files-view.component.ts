@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { S3uploadService } from "../services/s3upload.service";
 import { StoredFilesService } from '../services/stored-files.service';
+import { GlobalService } from "../services/global.service";
 import { StoredFile } from '../shared/models/stored-files';
 
 @Component({
@@ -17,16 +18,21 @@ export class FilesViewComponent {
 
   constructor(private datePipe: DatePipe,
     private s3upload: S3uploadService,
-    private storedFilesService: StoredFilesService) { }
+    private storedFilesService: StoredFilesService,
+    private globalService: GlobalService,) { 
+    }
 
   ngOnInit() {
-    this.fetchStoredFiles();
+    this.fetchStoredFiles();    
   }
 
   fetchStoredFiles() {
+      Promise.resolve().then(() => {this.globalService.setLoading(true)});  
+
       this.storedFilesService.getStoredFiles().subscribe( data => {
         console.log('fetchStoredFiles: ', data)
         this.storedFiles = data;        
+        this.globalService.setLoading(false);
       }
     ) 
   } 

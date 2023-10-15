@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { GlobalService } from './services/global.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +10,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'transactions_client';
   opened = true;
+  
+  isLoading: Observable<boolean>;
+  
+  constructor(private globalService: GlobalService) { 
+  }
+
+  ngOnInit() {
+    this.isLoading = this.globalService.isLoading$;
+  }
 }

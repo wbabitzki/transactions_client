@@ -12,6 +12,32 @@
     background-color: #F0F6F6;
 }
 
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.loading-wheel {
+    border: 16px solid var(--control-color);
+    border-top: 16px solid var(--action-color);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    inset: 50%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .mat-sidenav {
     width: 200px;
     background-color: #BBE6E4;

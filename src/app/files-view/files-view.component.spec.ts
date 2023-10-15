@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { MatTableModule } from '@angular/material/table';
@@ -9,6 +9,7 @@ import { StoredFilesService } from '../services/stored-files.service';
 import { FilesViewComponent } from './files-view.component';
 import { StoredFile } from '../shared/models/stored-files';
 import { DatePipe } from '@angular/common';
+import { GlobalService } from '../services/global.service';
 
 describe('FilesViewComponent', () => {
   let component: FilesViewComponent;
@@ -16,26 +17,33 @@ describe('FilesViewComponent', () => {
 
   let stubS3UploadServce: S3uploadService;
   let stubStoredFilesService: jasmine.SpyObj<StoredFilesService>;
+  let globalService: GlobalService;
   
   beforeEach(async () => {
+    const stubGlobalService = {
+      isLoading$: of(false),
+      setLoading: jasmine.createSpy('setLoading'),
+    };
 
     stubS3UploadServce = {} as S3uploadService;  
     stubS3UploadServce.uploadFile = jasmine.createSpy().and.returnValue(of([]))  
     stubStoredFilesService = jasmine.createSpyObj('StoredFilesService', ['getStoredFiles']);
-    
+
     await TestBed.configureTestingModule({
       declarations: [ FilesViewComponent ],
       imports: [ HttpClientTestingModule, MatTableModule],
       providers: [
         { provide: S3uploadService, useValue: stubS3UploadServce },
         { provide: StoredFilesService, useValue: stubStoredFilesService},
+        { provide: GlobalService, useValue: stubGlobalService},
         DatePipe
       ]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(FilesViewComponent);
-    component = fixture.componentInstance;    
+    component = fixture.componentInstance;
+    globalService = TestBed.inject(GlobalService);    
   });
 
   it('should create the component', () => {
@@ -147,6 +155,20 @@ describe('FilesViewComponent', () => {
     const errorsElement = fixture.debugElement.query(By.css('mat-table mat-row .error-sign'));
     expect(errorsElement.nativeElement.textContent).toBe('2');
   });
+
+  it('should set isLoading$ to true when fetching data', fakeAsync(() => {
+    stubStoredFilesService.getStoredFiles.and.returnValue(of([]));
+    component.fetchStoredFiles();
+    
+    tick();
+    expect(globalService.setLoading).toHaveBeenCalledWith(true);
+    tick();
+
+    globalService.isLoading$.subscribe((isLoading) => {
+      expect(isLoading).toBe(false);
+    });
+  }));
+  
 });
 
 

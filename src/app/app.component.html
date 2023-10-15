@@ -2,8 +2,11 @@
     <span class="left-spacer"></span>
     <mat-icon class="material-icons-outlined">account_circle</mat-icon>
 </mat-toolbar>
-<mat-sidenav-container>
+<mat-sidenav-container>       
     <mat-sidenav [(opened)]="opened" mode="side">
+        <div class="overlay" *ngIf="(isLoading | async)">
+            <div class="loading-wheel"></div>
+        </div>
         <mat-list>
             <mat-list-item>
                 <mat-icon>folder_open</mat-icon>
@@ -20,7 +23,7 @@
         </mat-list>
     </mat-sidenav>
     
-    <mat-sidenav-content>
+    <mat-sidenav-content>                
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
